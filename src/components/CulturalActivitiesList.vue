@@ -9,7 +9,7 @@
           <th scope="col">Event Venue</th>
           <th scope="col">Event Date</th>
           <th scope="col">Event Time</th>
-          <th scope="col">Event Category</th>
+          <th scope="col">Category</th>
           <th scope="col">Detail Link</th>
         </tr>
       </thead>
@@ -30,15 +30,21 @@
         </tr>
       </tbody>
     </table>
+    <PaginationComponent />
   </div>
 </template>
 
 <script>
   import { ACTIVITIES_MODULE, FETCH_ACTIVITIES } from '@/store/CulturalActivities/types'
   import { mapActions, mapState } from 'vuex'
+  import PaginationComponent from '@/components/shared/PaginationComponent.vue'
+
   export default {
+    components: {
+      PaginationComponent
+    },
     mounted() {
-      this.fetchActivities()
+      this.fetchActivities(1)
     },
     methods: {
       ...mapActions(ACTIVITIES_MODULE, {
@@ -50,9 +56,12 @@
 
 </script>
 
-<style>
+<style scoped>
   .list {
     background-color: #fff;
     padding: 2%;
+  }
+  td img {
+    border-radius: 2%;
   }
 </style>

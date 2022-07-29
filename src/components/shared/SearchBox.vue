@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .search {
   width: 50%;
   margin: 50px auto;

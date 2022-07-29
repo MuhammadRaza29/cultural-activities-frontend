@@ -2,8 +2,8 @@ import * as ActivityTypes from '@/store/CulturalActivities/types'
 import Axios from "@/utils/axiosConfiugration"
 
 export default {
-  [ActivityTypes.FETCH_ACTIVITIES]: ({ commit }) => {
-    Axios.get('v1/events')
+  [ActivityTypes.FETCH_ACTIVITIES]: ({ commit }, { pageNum }) => {
+    Axios.get(`v1/events?page=${pageNum}`)
       .then((response) => {
         commit(ActivityTypes.SET_ACTIVITIES, response)
       })

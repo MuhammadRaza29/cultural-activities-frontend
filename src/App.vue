@@ -18,7 +18,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .main-app {
   background-color: #f3f2f2 !important;
   padding-left: 5%;

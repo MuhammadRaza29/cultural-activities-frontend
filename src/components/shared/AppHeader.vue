@@ -67,7 +67,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .main-header {
     background-color: #fff;
     margin-bottom: 1%;
