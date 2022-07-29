@@ -16,40 +16,13 @@
           (500)
         </span>
       </h6>
-      <div class='col-md-12 filters'>
-        <span class="dropdown">
-          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown link
-          </a>
-
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </span>
-        <span class="dropdown">
-          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown link
-          </a>
-
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </span>
-        <span class="dropdown">
-          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown link
-          </a>
-
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </span>
+      <div class='col-md-3 filters'>
+        <select class="form-control col-md-4" name="template" v-model="selected">
+          <option disabled value="">Select Web Source</option>
+          <option v-for="(value, key) in web_sources()" v-bind:key="key" v-bind:value="value">
+             {{ key.toUpperCase() }}
+          </option>
+        </select>
       </div>
       <SearchBox />
       <hr>
@@ -59,10 +32,21 @@
 
 <script>
   import SearchBox from '@/components/shared/SearchBox.vue'
+  import { ACTIVITIES_MODULE, FETCH_WEB_SOURCES } from '@/store/CulturalActivities/types'
+  import { mapActions, mapState } from 'vuex'
 
   export default {
     components: {
       SearchBox,
+    },
+    mounted() {
+      this.fetchWebSources()
+    },
+    methods: {
+      ...mapActions(ACTIVITIES_MODULE, {
+        fetchWebSources: FETCH_WEB_SOURCES
+      }),
+      ...mapState(ACTIVITIES_MODULE, ['web_sources'])
     }
   }
 </script>

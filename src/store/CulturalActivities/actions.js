@@ -10,5 +10,14 @@ export default {
       .catch((err) => {
         console.log('Error in fetching events', err)
       })
+  },
+  [ActivityTypes.FETCH_WEB_SOURCES]: ({ commit }) => {
+    Axios.get('v1/web_sources')
+      .then((response) => {
+        commit(ActivityTypes.SET_WEB_SOURCES, response)
+      })
+      .catch((err) => {
+        console.log('Error in fetching events', err)
+      })
   }
 }
