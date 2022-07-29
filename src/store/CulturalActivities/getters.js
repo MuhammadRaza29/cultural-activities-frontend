@@ -5,6 +5,6 @@ export default {
     return state.activities
   },
   [ActivityTypes.GET_WEB_SOURCES]: (state) => {
-    return state.web_sources
+    return state.webSources
   }
 }

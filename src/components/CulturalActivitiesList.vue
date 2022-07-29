@@ -21,7 +21,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for='activity in this.activities()' :key='activity.id'>
+        <tr v-if="totalActivities()==0">
+          <td colspan='8' class='center'>
+            <h5>No Records Found</h5>
+          </td>
+        </tr>
+        <tr v-else v-for='activity in this.activities()' :key='activity.id'>
           <td>{{ activity.title }}</td>
           <td>
             <img :src="activity.picture_url" width='200' height="150" />
@@ -66,8 +71,12 @@
   .list {
     background-color: #fff;
     padding: 2%;
+    padding-top: 1%;
   }
   td img {
     border-radius: 2%;
+  }
+  .table {
+    margin-top: 2%;
   }
 </style>

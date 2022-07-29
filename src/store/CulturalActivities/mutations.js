@@ -8,6 +8,6 @@ export default {
     state.totalActivities = data.total_events
   },
   [ActivityTypes.SET_WEB_SOURCES]: (state, payload) => {
-    state.web_sources = payload.data
+    state.webSources = payload.data
   }
 }

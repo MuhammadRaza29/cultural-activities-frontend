@@ -24,7 +24,10 @@
       }),
       ...mapState(ACTIVITIES_MODULE, ['totalActivities', 'totalPages']),
       clickCallback(pageNum) {
-        this.fetchActivities({ pageNum })
+        const params = {
+          page: pageNum
+        }
+        this.fetchActivities(params)
       }
     }
   }

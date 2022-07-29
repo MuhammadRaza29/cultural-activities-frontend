@@ -10,24 +10,28 @@
         <h4>Cultural Activites In Berlin</h4>
       </div>
       <div class="row filters">
-        <div class='offset-md-1 col-md-3'>
-          <select class="form-control" name="template" v-model="selected">
+        <div class='offset-md-1 col-md-4'>
+          <div class="col-md-12 grey">
+            <h6>Search by Web Source</h6>
+          </div>
+          <select class="form-control" name="template" v-model="webSourceSelected">
             <option disabled value="">Select Web Source</option>
-            <option v-for="(value, key) in web_sources()" v-bind:key="key" v-bind:value="value">
-               {{ key.toUpperCase() }}
-            </option>
-          </select>
-        </div>
-        <div class='col-md-3'>
-          <select class="form-control" name="template" v-model="selected">
-            <option disabled value="">Select Web Source</option>
-            <option v-for="(value, key) in web_sources()" v-bind:key="key" v-bind:value="value">
+            <option v-for="(value, key) in webSources()" v-bind:key="key" v-bind:value="key">
                {{ key.toUpperCase() }}
             </option>
           </select>
         </div>
         <SearchBox />
-    </div>
+        <div class='offset-md-1 col-md-12 date'>
+          <div class="col-md-12 grey">
+            <h6>Search by Date</h6>
+          </div>
+          <datepicker
+            placeholder='Select Date'
+            @input="dateSelected"
+          ></datepicker>
+        </div>
+      </div>
       <hr>
     </main>
   </div>
@@ -35,21 +39,52 @@
 
 <script>
   import SearchBox from '@/components/shared/SearchBox.vue'
-  import { ACTIVITIES_MODULE, FETCH_WEB_SOURCES } from '@/store/CulturalActivities/types'
+  import { ACTIVITIES_MODULE, FETCH_WEB_SOURCES, FETCH_ACTIVITIES } from '@/store/CulturalActivities/types'
   import { mapActions, mapState } from 'vuex'
+  import Datepicker from 'vuejs3-datepicker'
 
   export default {
     components: {
       SearchBox,
+      Datepicker
+    },
+    data() {
+      return {
+        webSourceSelected: ''
+      }
+    },
+    watch: {
+      webSourceSelected: function(value) {
+        if(value.length > 0){
+          const searchParams = {
+          search: {
+            web_source: value
+          }
+        }
+        this.fetchActivities(searchParams)
+        }
+      }
     },
     mounted() {
       this.fetchWebSources()
     },
+    computed: {
+     
+    },
     methods: {
       ...mapActions(ACTIVITIES_MODULE, {
-        fetchWebSources: FETCH_WEB_SOURCES
+        fetchWebSources: FETCH_WEB_SOURCES,
+        fetchActivities: FETCH_ACTIVITIES
       }),
-      ...mapState(ACTIVITIES_MODULE, ['web_sources'])
+      ...mapState(ACTIVITIES_MODULE, ['webSources']),
+      dateSelected(date) {
+        const searchParams = {
+          search: {
+            date: date.toDateString()
+          }
+        }
+        this.fetchActivities(searchParams)
+      }
     }
   }
 </script>
@@ -76,5 +111,8 @@
   .heading {
     margin-top: 2%;
     margin-left: 2%;
+  }
+  .date {
+    margin-top: 1%;
   }
 </style>
