@@ -6,25 +6,28 @@
       </div>
     </header>
     <main>
-      <div class='col-md-12'>
+      <div class='col-md-12 heading'>
         <h4>Cultural Activites In Berlin</h4>
       </div>
-
-      <h6>
-        All Activities
-        <span class="stl-text-grays-6">
-          (500)
-        </span>
-      </h6>
-      <div class='col-md-3 filters'>
-        <select class="form-control col-md-4" name="template" v-model="selected">
-          <option disabled value="">Select Web Source</option>
-          <option v-for="(value, key) in web_sources()" v-bind:key="key" v-bind:value="value">
-             {{ key.toUpperCase() }}
-          </option>
-        </select>
-      </div>
-      <SearchBox />
+      <div class="row filters">
+        <div class='offset-md-1 col-md-3'>
+          <select class="form-control" name="template" v-model="selected">
+            <option disabled value="">Select Web Source</option>
+            <option v-for="(value, key) in web_sources()" v-bind:key="key" v-bind:value="value">
+               {{ key.toUpperCase() }}
+            </option>
+          </select>
+        </div>
+        <div class='col-md-3'>
+          <select class="form-control" name="template" v-model="selected">
+            <option disabled value="">Select Web Source</option>
+            <option v-for="(value, key) in web_sources()" v-bind:key="key" v-bind:value="value">
+               {{ key.toUpperCase() }}
+            </option>
+          </select>
+        </div>
+        <SearchBox />
+    </div>
       <hr>
     </main>
   </div>
@@ -66,6 +69,12 @@
     background-color: #fff;
   }
   .filters {
-    background-color: #fff;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 3%;
+  }
+  .heading {
+    margin-top: 2%;
+    margin-left: 2%;
   }
 </style>

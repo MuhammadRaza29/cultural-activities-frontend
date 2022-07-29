@@ -1,5 +1,12 @@
 <template>
   <div class='row list'>
+    <h6>
+      All Activities
+      <span class="stl-text-grays-6">
+        ({{totalActivities()}})
+      </span>
+    </h6>
+    <PaginationComponent />
     <table class="table">
       <thead>
         <tr>
@@ -30,7 +37,6 @@
         </tr>
       </tbody>
     </table>
-    <PaginationComponent />
   </div>
 </template>
 

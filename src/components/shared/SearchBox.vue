@@ -1,17 +1,13 @@
 <template>
-  <div class="search">
+  <div class="col-md-3">
     <div class="form-group has-search">
       <span class="fa fa-search form-control-feedback search-icon"></span>
-      <input type="text" class="form-control" placeholder="Search">
+      <input type="text" class="form-control" placeholder="Search By Title">
     </div>
   </div>
 </template>
 
 <style scoped>
-.search {
-  width: 50%;
-  margin: 50px auto;
-}
 .has-search .form-control {
   padding-left: 2.375rem !important;
 }
