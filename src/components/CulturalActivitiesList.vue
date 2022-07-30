@@ -55,7 +55,7 @@
       PaginationComponent
     },
     mounted() {
-      this.fetchActivities(1)
+      this.fetchActivities({ page: 1 })
     },
     methods: {
       ...mapActions(ACTIVITIES_MODULE, {
